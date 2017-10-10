@@ -15,7 +15,12 @@ fetch(url).then(resp => resp.json()).then(data => {
   const items = data.todos;
   return items.map(item => {
     const li = createNode('li');
-    li.innerHTML = `${item.label}`;
+    if (item.complete) {
+      li.innerHTML = `<s>${item.label}</s>`;
+    } else {
+      li.innerHTML = `${item.label}`;
+    }
+
     append(ul, li);
   });
 });
